@@ -14,7 +14,7 @@ describe("Hyperlink functionality",() => {
     });
 });
 
-describe("Login form", () => {
+describe("Successfully login", () => {
     it("Can sign in", () => {
         cy.visit("http://localhost:8000/login");
         cy.get("form");
@@ -23,21 +23,56 @@ describe("Login form", () => {
         cy.get(".login").click();
         cy.url().should("include", "").end();
     });
-    
-    it("Can't sign in with wrong credentials", () => {
+});
+
+describe("Fail to login", () => {
+    it("Empty input", () => {
+        //Empty email
         cy.visit("http://localhost:8000/login");
         cy.get("form");
-        //wrong password
-        cy.get('input[name="email"]').type("ksm2920@gmail.com")
-        cy.get('input[name="password"]').type("1111111111");
+        cy.get('input[name="password"]').type("00000000");
         cy.get(".login").click();
-        //short password
-        cy.get('input[name="email"]').type("hello@gmail.com");
+        cy.contains("not allowed to be empty").end();
+        
+        //Empty password
+        cy.get('input[name="email"]').type("ksm2920@gmail.com");
+        cy.get(".login").click();
+        cy.contains("not allowed to be empty").end();
+    });
+
+    it("wrong password", () => {
+        cy.visit("http://localhost:8000/login");
+        cy.get("form");
+        cy.get('input[name="email"]').type("ksm2920@gmail.com");
+        cy.get('input[name="password"]').type("111111111");
+        cy.get(".login").click();
+        cy.contains("password").end();    
+    });
+
+    it("email wrongly formatted", () => {
+        cy.visit("http://localhost:8000/login");
+        cy.get("form");
+        cy.get('input[name="email"]').type("ksm2920gmail.com");
+        cy.get('input[name="password"]').type("00000000");
+        cy.get(".login").click();
+        cy.contains("@").end();    
+    });
+
+    it("password is too short", () => {
+        cy.visit("http://localhost:8000/login");
+        cy.get("form");
+        cy.get('input[name="email"]').type("ksm2920@gmail.com");
         cy.get('input[name="password"]').type("0000");
         cy.get(".login").click();
-        //not user
+        cy.contains("length").end();    
+    });
+
+    it("Not user", () => {
+        cy.visit("http://localhost:8000/login");
+        cy.get("form");
         cy.get('input[name="email"]').type("hello@gmail.com");
         cy.get('input[name="password"]').type("00000000");
-        cy.get(".login").click().end();
+        cy.get(".login").click();
+        cy.contains("sign up").end();    
     });
 });

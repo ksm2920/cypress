@@ -23,16 +23,16 @@ const registerSubmit = async (req, res) => {
     });
   }
 
-  const salt = await bcrypt.genSalt(12);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  // const salt = await bcrypt.genSalt(12);
+  // const hashedPassword = await bcrypt.hash(password, salt);
 
-  const newUser = new User({
-    name: name,
-    email: email,
-    password: hashedPassword,
-  });
+  // // const newUser = new User({
+  // //   name: name,
+  // //   email: email,
+  // //   password: hashedPassword,
+  // // });
 
-  newUser.save();
+  // // newUser.save();
 
   res.redirect("/login");
 };
