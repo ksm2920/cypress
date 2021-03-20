@@ -18,7 +18,7 @@ describe("Successfully login", () => {
     it("Can sign in", () => {
         cy.visit("http://localhost:8000/login");
         cy.get("form");
-        cy.get('input[name="email"]').type("ksm2920@gmail.com").should("have.value", "ksm2920@gmail.com");
+        cy.get('input[name="email"]').type("test@gmail.com").should("have.value", "test@gmail.com");
         cy.get('input[name="password"]').type("00000000").should("have.value", "00000000");
         cy.get(".login").click();
         cy.url().should("include", "").end();
@@ -35,33 +35,33 @@ describe("Fail to login", () => {
         cy.contains("not allowed to be empty").end();
         
         //Empty password
-        cy.get('input[name="email"]').type("ksm2920@gmail.com");
+        cy.get('input[name="email"]').type("test@gmail.com");
         cy.get(".login").click();
         cy.contains("not allowed to be empty").end();
     });
 
-    it("wrong password", () => {
+    it("Wrong password", () => {
         cy.visit("http://localhost:8000/login");
         cy.get("form");
-        cy.get('input[name="email"]').type("ksm2920@gmail.com");
+        cy.get('input[name="email"]').type("test@gmail.com");
         cy.get('input[name="password"]').type("111111111");
         cy.get(".login").click();
         cy.contains("password").end();    
     });
 
-    it("email wrongly formatted", () => {
+    it("Email wrongly formatted", () => {
         cy.visit("http://localhost:8000/login");
         cy.get("form");
-        cy.get('input[name="email"]').type("ksm2920gmail.com");
+        cy.get('input[name="email"]').type("testgmail.com");
         cy.get('input[name="password"]').type("00000000");
         cy.get(".login").click();
         cy.contains("@").end();    
     });
 
-    it("password is too short", () => {
+    it("Password is too short", () => {
         cy.visit("http://localhost:8000/login");
         cy.get("form");
-        cy.get('input[name="email"]').type("ksm2920@gmail.com");
+        cy.get('input[name="email"]').type("test@gmail.com");
         cy.get('input[name="password"]').type("0000");
         cy.get(".login").click();
         cy.contains("length").end();    

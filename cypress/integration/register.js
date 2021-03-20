@@ -1,5 +1,5 @@
 describe("Successfully register", () => {
-    it("register successfully", () => {
+    it("Register successfully", () => {
         cy.visit("http://localhost:8000/register");
         cy.get("form");
         cy.get('input[name="name"]').type("Hej").should("have.value", "Hej");

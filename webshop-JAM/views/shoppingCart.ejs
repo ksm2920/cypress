@@ -41,12 +41,11 @@
           </div>
           <div class="col-4 col-md-4 col-lg-4 cart-quantity pr-lg-5">
             <a class="btn" href="/removeFromCart/<%= cartItem.productId._id %>">
-              <i class="fas fa-trash-alt fa-lg"></i>
+              <i class="fas fa-trash-alt fa-lg" id="<%= cartItem.productId._id %>-remove"></i>
             </a>
             <div class="change-quantity">
-              <a href="/decreaseQuantity/<%= cartItem.productId._id %>"
-                ><button type="button">-</button></a
-              >
+              <a href="/decreaseQuantity/<%= cartItem.productId._id %>">
+                <button type="button" id="<%=cartItem.productId._id %>-minus">-</button></a>
               <input
                 class="col-4 p-0"
                 type="number"
@@ -54,7 +53,7 @@
                 value="<%= cartItem.quantity %>"
               />
               <a href="/addToCart/<%= cartItem.productId._id %>"
-                ><button type="button">+</button></a
+                ><button type="button" id="<%= cartItem.productId._id %>-plus">+</button></a
               >
             </div>
           </div>
@@ -69,7 +68,7 @@
       </div>
       <div class="modal-footer">
         <h5 class="col-12">Total:</h5>
-        <a class="btn btn-dark col-12" href="/checkout"> Checkout </a>
+        <a class="btn btn-dark col-12 checkout" href="/checkout"> Checkout </a>
       </div>
     </div>
   </div>
