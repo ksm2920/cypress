@@ -1,7 +1,7 @@
 describe("Successfully checkout", () => {
     it("Checkout successfully", () => {
         cy.visit("http://localhost:8000");
-        cy.get('#login').click();
+        cy.get(".checkout-link").click();
         cy.get("form");
         cy.get('input[name="email"]').type("test@gmail.com").should("have.value", "test@gmail.com");
         cy.get('input[name="password"]').type("00000000").should("have.value", "00000000");
