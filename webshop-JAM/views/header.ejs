@@ -22,11 +22,11 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link menuColor" href="/checkout">Checkout</a>
+          <a class="nav-link menuColor checkout-link" href="/checkout">Checkout</a>
         </li>
         <% if(!locals.user) { %>
         <li class="nav-item">
-          <a class="nav-link menuColor" href="/login">Login</a>
+          <a class="nav-link menuColor" href="/login" id="login">Login</a>
         </li>
         <% } %>
         <% if(locals.user) { %>

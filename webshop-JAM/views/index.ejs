@@ -23,13 +23,13 @@
               <div class="row">
                 <% products.forEach(product => { %>
                 <div class="card col-6 col-md-4 col-lg-3 minicard" id="space-btw" style="width: 18rem;">
-                  <a class="imagebox" href="/products/<%= product.id %>"><img src="/uploads/<%= product.pathOfImage %>" class="card-img-top myImg" alt=""></a>
+                  <a class="imagebox" href="/products/<%= product.id %>" ><img src="/uploads/<%= product.pathOfImage %>" class="card-img-top myImg" alt=""></a>
                   <div class="card-body">
-                    <a class="imagebox" href="/products/<%= product.id %>"><h5 class="card-title"> <%= product.name %></h5></a>
+                    <a class="imagebox" href="/products/<%= product.id %>"><h5 class="card-title" id="<%= product.id %>-name"> <%= product.name %></h5></a>
                     <p class="card-text"> <%= product.price %> SEK</p>
                     <span class="buyBtn">
                       <form  method="GET" action="/addToCart/<%= product.id %>">
-                        <input type="submit" value="Buy" class="buybtn">
+                        <input type="submit" value="Buy" class="buybtn" id="<%=product._id%>-btn">
                     </form>
                     </span>
                     <!-- <a href="/addToCart/<%= product.id %>" class="add-to-cart">
